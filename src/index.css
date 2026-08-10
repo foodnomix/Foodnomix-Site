@@ -1,0 +1,126 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Foodnomix dark theme — navy brand */
+  --fn-bg: #060D20;
+  --fn-surface: #0D1635;
+  --fn-text: #EDF2FF;
+  --fn-muted: #6B7EAD;
+  --fn-accent: #E5410D;
+  --fn-accent-dim: rgba(229, 65, 13, 0.14);
+  --fn-border: rgba(237, 242, 255, 0.09);
+  --fn-card: #111E42;
+  --fn-navy: #1B2464;
+
+  /* ByteValue light theme — navy brand */
+  --bv-bg: #EEF3FF;
+  --bv-surface: #FFFFFF;
+  --bv-text: #1B2464;
+  --bv-muted: #5567A0;
+  --bv-accent: #00BF8F;
+  --bv-accent-dim: rgba(0, 191, 143, 0.12);
+  --bv-border: rgba(27, 36, 100, 0.10);
+  --bv-card: #FFFFFF;
+
+  /* Shared */
+  --radius: 12px;
+  --radius-lg: 24px;
+  --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Montserrat', -apple-system, sans-serif;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  border: none;
+  outline: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--fn-muted); border-radius: 2px; }
+
+/* Utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+}
+
+/* Animations */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-18px); }
+}
+
+@keyframes rotateBadge {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes lineGrow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}

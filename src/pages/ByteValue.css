@@ -2075,67 +2075,148 @@
   }
   .bv-hero-scroll-hint { display: none; }
 
-  /* Phone */
-  .bv-hero-visual {
-    height: 420px;
+  /* Eyebrow pill — one-line, tighter on mobile */
+  .bv-hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    padding: 6px 12px;
+    margin-bottom: 18px;
+    gap: 8px;
     max-width: 100%;
-    perspective: 1200px;
+    white-space: nowrap;
+  }
+  .bv-hero-eyebrow-dot { width: 5px; height: 5px; }
+  /* Hide the long tail on mobile so the pill fits on one line */
+  .bv-hero-eyebrow-long { display: none; }
+
+  /* Phone — bigger on mobile so content breathes */
+  .bv-hero-visual {
+    height: 600px;
+    max-width: 100%;
+    perspective: 1400px;
+    overflow: visible;
   }
   .mp-phone {
-    width: 220px;
-    height: 460px;
-    border-radius: 36px;
-    padding: 6px;
-    transform: rotateY(-8deg) rotateX(3deg);
+    width: 280px;
+    height: 570px;
+    border-radius: 42px;
+    padding: 7px;
+    transform: rotateY(-10deg) rotateX(3deg);
   }
   @keyframes mpFloat {
-    0%, 100% { transform: rotateY(-8deg) rotateX(3deg) translateY(0); }
-    50%      { transform: rotateY(-8deg) rotateX(3deg) translateY(-10px); }
+    0%, 100% { transform: rotateY(-10deg) rotateX(3deg) translateY(0); }
+    50%      { transform: rotateY(-10deg) rotateX(3deg) translateY(-12px); }
   }
   .mp-phone:hover {
-    transform: rotateY(-5deg) rotateX(1deg) translateY(-4px);
+    transform: rotateY(-6deg) rotateX(1deg) translateY(-6px);
   }
-  .mp-phone-notch { width: 72px; height: 18px; top: 10px; }
-  .mp-phone-notch::after { width: 10px; height: 10px; }
-  .mp-phone-inner { border-radius: 30px; }
-  .mp-glow { width: 240px; height: 240px; }
+  .mp-phone-notch { width: 88px; height: 22px; top: 12px; }
+  .mp-phone-notch::after { width: 12px; height: 12px; }
+  .mp-phone-inner { border-radius: 34px; }
+  .mp-glow { width: 320px; height: 320px; }
 
-  /* Side cards */
-  .mp-side-card { display: none; }
+  /* Side floating cards — smaller and positioned to hang off the phone corners */
+  .mp-side-card {
+    display: block;
+    padding: 9px 12px;
+    border-radius: 12px;
+    box-shadow:
+      0 12px 24px -10px rgba(27, 36, 100, 0.30),
+      0 0 0 1px rgba(27, 36, 100, 0.06);
+  }
+  .mp-side-card--top {
+    top: 24px;
+    right: -8px;
+    transform: rotate(4deg) translateZ(70px);
+  }
+  .mp-side-card--bot {
+    bottom: 40px;
+    left: -12px;
+    transform: rotate(-4deg) translateZ(70px);
+  }
+  .mp-side-card-label { font-size: 8.5px; letter-spacing: 0.14em; }
+  .mp-side-card-val { font-size: 17px; }
+  .mp-side-card-val--small { font-size: 12px; }
+  .mp-side-card-trend { font-size: 10px; }
 
-  /* Screen content scaling */
-  .mp-status { font-size: 9px; padding: 6px 14px 0; }
-  .mp-app-header { padding: 8px 14px; }
-  .mp-app-name { font-size: 13px; }
-  .mp-live-badge { font-size: 7px; padding: 2px 6px; }
-  .mp-screen-content { padding: 8px 12px 12px; }
-  .mp-view-title { font-size: 9px; }
-  .mp-dots { padding: 6px 0; gap: 5px; }
-  .mp-dot { width: 5px; height: 5px; }
-  .mp-updated { font-size: 8px; padding: 4px 0; }
+  /* Status bar */
+  .mp-statusbar { padding: 8px 18px 0; font-size: 10px; }
 
-  /* Payout view */
-  .mp-stat { padding: 7px 8px; }
-  .mp-stat-label { font-size: 8px; }
-  .mp-stat-val { font-size: 13px; }
-  .mp-payout-final { padding: 10px; border-radius: 10px; margin-top: 8px; }
-  .mp-payout-final-label { font-size: 8px; }
-  .mp-payout-final-amount { font-size: 18px; }
-  .mp-donut { width: 36px; height: 36px; }
+  /* App header */
+  .mp-app-head { padding: 12px 16px 10px; gap: 10px; }
+  .mp-app-icon { width: 28px; height: 28px; border-radius: 7px; }
+  .mp-app-icon svg { width: 18px; height: 18px; }
+  .mp-app-name { font-size: 14px; }
+  .mp-app-restaurant { font-size: 10.5px; }
+  .mp-live { font-size: 8.5px; padding: 3px 7px; gap: 4px; }
+  .mp-live-dot { width: 5px; height: 5px; }
 
-  /* Performance view */
-  .mp-orders-badge { font-size: 7.5px; padding: 2px 6px; }
-  .mp-perf-stats { gap: 4px; }
-  .mp-perf-stat { padding: 7px 6px; }
-  .mp-perf-stat-label { font-size: 7.5px; }
-  .mp-perf-stat-val { font-size: 12px; }
-  .mp-flow-table { gap: 3px; }
-  .mp-flow-row { padding: 5px 6px; font-size: 9px; }
+  /* Content area */
+  .mp-content { padding: 10px 14px 8px; }
+  .mp-view-head { margin-bottom: 12px; }
+  .mp-view-title { font-size: 13px; }
+  .mp-view-sub { font-size: 10.5px; }
+  .mp-tag { font-size: 9px; padding: 3px 8px; }
 
-  /* Items view */
-  .mp-items-table { font-size: 9px; }
-  .mp-items-table th { font-size: 7.5px; padding: 5px 4px; }
-  .mp-items-table td { padding: 5px 4px; }
+  /* Stat grid */
+  .mp-stat-grid { gap: 8px; }
+  .mp-stat { padding: 10px 10px 11px; border-radius: 10px; }
+  .mp-stat-label { font-size: 8.5px; letter-spacing: 0.08em; line-height: 1.15; }
+  .mp-stat-value { font-size: 15px; line-height: 1.1; margin-top: 3px; }
+  .mp-stat-value--num { font-size: 17px; }
+  .mp-stat-hint { font-size: 9.5px; }
+  .mp-stat-badge { font-size: 8.5px; padding: 2px 7px; margin-top: 5px; }
+  .mp-order-pills { gap: 4px; margin-top: 5px; }
+  .mp-order-pill { font-size: 8.5px; padding: 2px 6px; }
+
+  /* Final payout bar */
+  .mp-final { padding: 12px; border-radius: 10px; margin-top: 10px; gap: 10px; }
+  .mp-final-label { font-size: 8.5px; letter-spacing: 0.12em; }
+  .mp-final-value { font-size: 17px; margin-top: 2px; }
+  .mp-final-hint { font-size: 9px; margin-top: 3px; }
+  .mp-donut { width: 44px; height: 44px; }
+  .mp-donut-label { font-size: 9.5px; }
+
+  /* Revenue flow */
+  .mp-flow { margin-top: 10px; padding: 12px; border-radius: 10px; }
+  .mp-flow-title { font-size: 8.5px; letter-spacing: 0.12em; margin-bottom: 8px; }
+  .mp-flow-label { font-size: 11px; }
+  .mp-flow-val { font-size: 11.5px; }
+
+  /* Items view — let names wrap so they're readable */
+  .mp-items-table { font-size: 10px; }
+  .mp-items-thead {
+    grid-template-columns: 16px 1fr 32px 52px;
+    padding: 4px 0 6px;
+    gap: 6px;
+  }
+  .mp-th { font-size: 8.5px; letter-spacing: 0.06em; }
+  .mp-items-row {
+    grid-template-columns: 16px 1fr 32px 52px;
+    padding: 8px 0;
+    gap: 6px;
+    align-items: start;
+  }
+  .mp-rank { margin-top: 1px; }
+  .mp-item-name {
+    font-size: 11px;
+    white-space: normal;
+    text-overflow: initial;
+    overflow: visible;
+    line-height: 1.2;
+    word-break: break-word;
+  }
+  .mp-item-net { font-size: 9px; line-height: 1.25; margin-top: 2px; }
+  .mp-item-units { font-size: 11.5px; margin-top: 1px; }
+  .mp-item-payout { font-size: 11.5px; margin-top: 1px; }
+
+  /* Footer */
+  .mp-foot { padding: 6px 12px 4px; }
+  .mp-foot-refresh { font-size: 9px; gap: 5px; }
+  .mp-foot-dots { gap: 4px; }
+
+  /* Home indicator */
+  .mp-home-indicator { width: 90px; height: 4px; bottom: 8px; }
 
   /* Sections */
   .bv-section-label { margin-bottom: 20px; }

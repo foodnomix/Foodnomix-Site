@@ -582,7 +582,9 @@ export default function ByteValue() {
           <div className={`bv-hero-copy ${heroVisible ? 'revealed' : ''}`}>
             <div className="bv-hero-eyebrow">
               <span className="bv-hero-eyebrow-dot" />
-              A Foodnomix product · Now onboarding restaurants
+              <span className="bv-hero-eyebrow-text">
+                A Foodnomix product<span className="bv-hero-eyebrow-long"> · Now onboarding restaurants</span>
+              </span>
             </div>
             <h1 className="bv-hero-headline">
               <span>Your restaurant data,</span>

@@ -2773,6 +2773,12 @@
   font-size: 12px;
   color: var(--fn-muted);
 }
+.footer-credit a {
+  color: var(--fn-text);
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+.footer-credit a:hover { color: var(--fn-accent); }
 
 /* ══════════════════════════════════════════════════════
    RESPONSIVE — TABLET (≤ 900px)

@@ -925,8 +925,10 @@ export default function Home() {
             </div>
           </div>
           <div className="footer-bottom">
-            <span>© 2025 Foodnomix. All rights reserved.</span>
-            <span>Made for Indian restaurants.</span>
+            <span>© 2026 Foodnomix. All rights reserved.</span>
+            <span className="footer-credit">
+              Developed by <a href="https://pandrsolutions.com" target="_blank" rel="noopener noreferrer">Pandr Solutions</a>
+            </span>
           </div>
         </div>
       </footer>

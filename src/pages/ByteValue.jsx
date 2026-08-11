@@ -831,8 +831,10 @@ export default function ByteValue() {
             </div>
           </div>
           <div className="bv-footer-bottom">
-            <span>© 2025 Foodnomix · ByteValue</span>
-            <span>Built for Indian restaurants.</span>
+            <span>© 2026 Foodnomix · ByteValue. All rights reserved.</span>
+            <span className="bv-footer-credit">
+              Developed by <a href="https://pandrsolutions.com" target="_blank" rel="noopener noreferrer">Pandr Solutions</a>
+            </span>
           </div>
         </div>
       </footer>

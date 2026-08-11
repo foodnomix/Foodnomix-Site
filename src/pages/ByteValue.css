@@ -2066,6 +2066,12 @@
   font-size: 12px;
   color: var(--bv-muted);
 }
+.bv-footer-credit a {
+  color: var(--bv-text);
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+.bv-footer-credit a:hover { color: var(--bv-accent); }
 
 /* ─────────────────────────────
    RESPONSIVE

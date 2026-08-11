@@ -469,7 +469,7 @@ function TopItemsTable() {
 /* Feature card icons */
 const FEATURE_ICONS = [
   <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M10 8h18l8 8v24H10V8z" /><path d="M28 8v8h8" /><line x1="17" y1="22" x2="29" y2="22" /><line x1="17" y1="28" x2="25" y2="28" /></svg>,
-  <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><line x1="6" y1="38" x2="38" y2="38" /><rect x="6" y="26" width="7" height="12" rx="1" /><rect x="18" y="18" width="7" height="20" rx="1" /><rect x="30" y="8" width="7" height="30" rx="1" /></svg>,
+  <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="10" y="20" width="24" height="18" rx="3" /><path d="M15 20v-5a7 7 0 0 1 14 0v5" /><circle cx="22" cy="29" r="2" fill="currentColor" strokeWidth="0" /><line x1="22" y1="31" x2="22" y2="34" /></svg>,
   <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="6" y="10" width="32" height="28" rx="2" /><line x1="6" y1="18" x2="38" y2="18" /><line x1="14" y1="6" x2="14" y2="14" /><line x1="30" y1="6" x2="30" y2="14" /><polyline points="14,28 19,33 30,22" /></svg>,
   <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"><line x1="8" y1="22" x2="36" y2="22" /><circle cx="14" cy="22" r="4" fill="currentColor" strokeWidth="0" /><circle cx="30" cy="22" r="4" fill="currentColor" strokeWidth="0" /><line x1="22" y1="10" x2="22" y2="34" strokeDasharray="3 3" /></svg>,
   <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><polyline points="6,32 14,22 20,27 28,14 38,18" /><polyline points="30,14 38,14 38,22" /></svg>,
@@ -478,7 +478,7 @@ const FEATURE_ICONS = [
 
 const FEATURES = [
   { title: 'You just share the reports', desc: 'Send us your Swiggy and Zomato settlement files on WhatsApp or email. That is the only thing you do. We build the ByteValue report for you.' },
-  { title: 'Your data stays private', desc: 'We understand your data is valuable. Your settlement files, sales, and item information are never shared with third parties or resold. Ever.' },
+  { title: 'Login-protected access', desc: 'Every report sits behind a private login built for your restaurant. Only you and the people you authorise can open it. Your settlement files, sales, and item data are never shared with third parties, ever.' },
   { title: 'Complete fee breakdown', desc: 'See exactly how much revenue you generated, what the platform took as commission and ads, what went to taxes, and what actually reached your account.' },
   { title: 'Net per item, ranked', desc: 'After every deduction is distributed proportionally, we show the real net amount each dish earned. The number that changes your pricing decisions.' },
   { title: 'Read on any device', desc: 'Your ByteValue report opens cleanly on mobile, tablet, or laptop. Check your numbers on the way to the kitchen or on the couch after service.' },
@@ -495,7 +495,7 @@ const BENEFIT_ICONS = [
 
 const BENEFITS = [
   { title: 'Zero effort', desc: 'You do not read spreadsheets, you do not run reports. Share your settlement files and your ByteValue report is ready. Focus on the kitchen, not the paperwork.' },
-  { title: 'Your data, protected', desc: 'Your settlement data is valuable and we treat it that way. Stored securely, never shared, never used to train anything. Only you and your team see it.' },
+  { title: 'Secure, login-protected reports', desc: 'Your report opens only after logging in with your private account. Stored securely, never shared, never used to train anything. Only you and your team can see your numbers.' },
   { title: 'Any device, anytime', desc: 'Mobile, tablet, or laptop. Your ByteValue report adapts to any screen, so you can check performance from the counter or from home.' },
   { title: 'Numbers before noise', desc: 'A clean, simple layout that shows the number first and the explanation second. You spend seconds understanding what matters, not minutes decoding it.' },
   { title: 'Smarter menu decisions', desc: 'Once you see net per item, pricing and promotion decisions get obvious. Reprice underpriced dishes and cut items that only look profitable on paper.' },
@@ -597,18 +597,18 @@ export default function ByteValue() {
             </div>
             <div className="bv-hero-trust">
               <div className="bv-hero-trust-item">
-                <span className="bv-trust-num">Any</span>
-                <span className="bv-trust-label">device, mobile or laptop</span>
+                <span className="bv-trust-num">Secure</span>
+                <span className="bv-trust-label">login-protected report access</span>
               </div>
               <div className="bv-hero-trust-sep" />
               <div className="bv-hero-trust-item">
                 <span className="bv-trust-num">100%</span>
-                <span className="bv-trust-label">private, never shared</span>
+                <span className="bv-trust-label">private, only you can view it</span>
               </div>
               <div className="bv-hero-trust-sep" />
               <div className="bv-hero-trust-item">
-                <span className="bv-trust-num">0</span>
-                <span className="bv-trust-label">spreadsheets required</span>
+                <span className="bv-trust-num">Any</span>
+                <span className="bv-trust-label">device, mobile or laptop</span>
               </div>
             </div>
           </div>
@@ -737,7 +737,7 @@ export default function ByteValue() {
             {[
               { num: '01', title: 'Share your settlement files', desc: 'Download your Swiggy and Zomato payout reports from the partner portal and send them to us on WhatsApp or email. That is the only thing you need to do.' },
               { num: '02', title: 'We build your ByteValue report', desc: 'Our team processes every line of your settlement: gross sales, commissions, ad charges, offer deductions, taxes, and fees. Your data stays private and is never shared.' },
-              { num: '03', title: 'Read it on any device', desc: 'Open your ByteValue report on mobile, tablet, or laptop. A clean, simple design that keeps you focused on the numbers, not the noise.' },
+              { num: '03', title: 'Log in and read your report', desc: 'We create a private account for you. Log in from any device to view your ByteValue report. Only you and the people you authorise can open it, so your business numbers stay secure.' },
             ].map(({ num, title, desc }, i) => {
               const [ref, visible] = useReveal()
               return (
@@ -771,7 +771,7 @@ export default function ByteValue() {
               Know your numbers.<br /><em>Grow your restaurant.</em>
             </h2>
             <p className="bv-cta-sub">
-              Leave your details and we will set you up with your first settlement analysis inside 48 hours.
+              Leave your details and we will set up your private ByteValue account, then send your first settlement analysis inside 48 hours.
             </p>
             <form className="bv-form">
               <div className="bv-form-row">

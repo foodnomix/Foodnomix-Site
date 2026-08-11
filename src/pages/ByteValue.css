@@ -140,16 +140,9 @@
   min-height: 100vh;
   box-sizing: border-box;
 }
-.bv-hero-badge-corner {
-  position: absolute;
-  top: 100px;
-  left: 0;
-  z-index: 3;
-}
 .bv-hero-copy {
   position: relative;
   z-index: 2;
-  padding-top: 90px;
   opacity: 0;
   transform: translateY(32px);
   transition: opacity 0.9s ease, transform 0.9s ease;
@@ -506,20 +499,19 @@
   gap: 8px;
 }
 .mp-app-icon {
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  border-radius: 6px;
-  background: #FFFFFF;
-  border: 1px solid rgba(27, 36, 100, 0.08);
+  border-radius: 7px;
+  background: rgba(0, 191, 143, 0.10);
+  border: 1px solid rgba(0, 191, 143, 0.22);
 }
-.mp-app-icon img {
-  height: 22px;
-  width: auto;
-  max-width: none;
+.mp-app-icon svg {
+  width: 18px;
+  height: 18px;
+  display: block;
 }
 .mp-app-name {
   font-family: 'Montserrat', sans-serif;
@@ -933,16 +925,18 @@
   animation: mpSideFloat 5.5s ease-in-out infinite;
 }
 .mp-side-card--top {
-  top: 60px;
-  right: 4px;
-  transform: rotate(5deg);
+  top: 30px;
+  right: 0;
+  transform: rotate(5deg) translateZ(90px);
   animation-delay: 0.5s;
+  z-index: 10;
 }
 .mp-side-card--bot {
-  bottom: 70px;
-  left: 4px;
-  transform: rotate(-4deg);
+  bottom: 40px;
+  left: 0;
+  transform: rotate(-4deg) translateZ(90px);
   animation-delay: 2s;
+  z-index: 10;
 }
 @keyframes mpSideFloat {
   0%, 100% { translate: 0 0; }
@@ -1698,11 +1692,16 @@
   margin: 0 0 12px;
 }
 .bv-benefits-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
   position: relative;
   z-index: 1;
+}
+.bv-benefits-grid .bv-benefit-card {
+  flex: 1 1 320px;
+  max-width: calc((100% - 40px) / 3);
 }
 .bv-benefit-card {
   background: var(--bv-bg);
@@ -2009,7 +2008,7 @@
   .bv-nav-inner { padding: 0 24px; }
   .bv-hero-inner { grid-template-columns: 1fr; padding: 120px 24px 80px; gap: 60px; }
   .bv-hero-badge-corner { top: 88px; }
-  .bv-hero-copy { padding-top: 60px; }
+  .bv-hero-copy { padding-top: 0; }
   .bv-hero-visual { max-width: 440px; margin: 0 auto; height: 500px; }
   .bv-hero-card { transform: none; animation: none; }
   .bv-hero-card:hover { transform: translateY(-4px); }
@@ -2022,7 +2021,7 @@
   .bv-callout-body { border-left: none; border-top: 1px solid var(--bv-border); padding: 16px 0 0; }
   .bv-feebreak { padding: 32px 24px; }
   .bv-feat-grid { grid-template-columns: 1fr 1fr; }
-  .bv-benefits-grid { grid-template-columns: 1fr 1fr; }
+  .bv-benefits-grid .bv-benefit-card { max-width: calc((100% - 20px) / 2); }
   .bv-step { grid-template-columns: 60px 1fr; gap: 24px; }
   .bv-step-connector { left: 15px; }
   .bv-step-num { font-size: 34px; }
@@ -2030,16 +2029,145 @@
 }
 
 @media (max-width: 640px) {
-  .bv-hero-trust { flex-direction: column; gap: 12px; }
+  /* Nav */
+  .bv-nav { padding: 16px 0; }
+  .bv-nav--scrolled { padding: 12px 0; }
+  .bv-nav-inner { padding: 0 16px; }
+  .bv-back { font-size: 12px; }
+  .bv-nav-logo-img { height: 28px; }
+  .bv-nav-cta { padding: 8px 16px; font-size: 12px; }
+
+  /* Hero */
+  .bv-hero { min-height: auto; }
+  .bv-hero-inner {
+    padding: 90px 20px 48px;
+    gap: 36px;
+  }
+  .bv-hero-copy { padding-top: 0; }
+  .bv-hero-headline { font-size: clamp(28px, 8vw, 40px); margin-bottom: 16px; }
+  .bv-hero-sub { font-size: 14px; margin-bottom: 16px; }
+  .bv-hero-trust {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 12px;
+    width: 100%;
+    padding: 18px 20px;
+  }
   .bv-hero-trust-sep { width: 100%; height: 1px; }
-  .bv-feat-grid { grid-template-columns: 1fr; }
-  .bv-benefits-grid { grid-template-columns: 1fr; }
-  .bv-form-row { grid-template-columns: 1fr; }
-  .bv-hero-actions { flex-direction: column; align-items: stretch; }
+  .bv-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
   .bv-btn-primary,
-  .bv-btn-ghost { text-align: center; justify-content: center; width: 100%; }
-  .bv-cta-inner { padding: 44px 24px; }
+  .bv-btn-ghost {
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    padding: 14px 24px;
+    font-size: 14px;
+  }
+  .bv-hero-badge-corner {
+    top: 86px;
+    transform: scale(0.7);
+    transform-origin: top left;
+  }
+  .bv-hero-scroll-hint { display: none; }
+
+  /* Phone */
+  .bv-hero-visual {
+    height: 420px;
+    max-width: 100%;
+    perspective: 1200px;
+  }
+  .mp-phone {
+    width: 220px;
+    height: 460px;
+    border-radius: 36px;
+    padding: 6px;
+    transform: rotateY(-8deg) rotateX(3deg);
+  }
+  @keyframes mpFloat {
+    0%, 100% { transform: rotateY(-8deg) rotateX(3deg) translateY(0); }
+    50%      { transform: rotateY(-8deg) rotateX(3deg) translateY(-10px); }
+  }
+  .mp-phone:hover {
+    transform: rotateY(-5deg) rotateX(1deg) translateY(-4px);
+  }
+  .mp-phone-notch { width: 72px; height: 18px; top: 10px; }
+  .mp-phone-notch::after { width: 10px; height: 10px; }
+  .mp-phone-inner { border-radius: 30px; }
+  .mp-glow { width: 240px; height: 240px; }
+
+  /* Side cards */
+  .mp-side-card { display: none; }
+
+  /* Screen content scaling */
+  .mp-status { font-size: 9px; padding: 6px 14px 0; }
+  .mp-app-header { padding: 8px 14px; }
+  .mp-app-name { font-size: 13px; }
+  .mp-live-badge { font-size: 7px; padding: 2px 6px; }
+  .mp-screen-content { padding: 8px 12px 12px; }
+  .mp-view-title { font-size: 9px; }
+  .mp-dots { padding: 6px 0; gap: 5px; }
+  .mp-dot { width: 5px; height: 5px; }
+  .mp-updated { font-size: 8px; padding: 4px 0; }
+
+  /* Payout view */
+  .mp-stat { padding: 7px 8px; }
+  .mp-stat-label { font-size: 8px; }
+  .mp-stat-val { font-size: 13px; }
+  .mp-payout-final { padding: 10px; border-radius: 10px; margin-top: 8px; }
+  .mp-payout-final-label { font-size: 8px; }
+  .mp-payout-final-amount { font-size: 18px; }
+  .mp-donut { width: 36px; height: 36px; }
+
+  /* Performance view */
+  .mp-orders-badge { font-size: 7.5px; padding: 2px 6px; }
+  .mp-perf-stats { gap: 4px; }
+  .mp-perf-stat { padding: 7px 6px; }
+  .mp-perf-stat-label { font-size: 7.5px; }
+  .mp-perf-stat-val { font-size: 12px; }
+  .mp-flow-table { gap: 3px; }
+  .mp-flow-row { padding: 5px 6px; font-size: 9px; }
+
+  /* Items view */
+  .mp-items-table { font-size: 9px; }
+  .mp-items-table th { font-size: 7.5px; padding: 5px 4px; }
+  .mp-items-table td { padding: 5px 4px; }
+
+  /* Sections */
+  .bv-section-label { margin-bottom: 20px; }
+  .bv-section-headline {
+    font-size: clamp(24px, 7vw, 36px);
+    margin-bottom: 32px;
+  }
+
+  /* Features */
+  .bv-feat-grid { grid-template-columns: 1fr; }
+  .bv-feat-card { padding: 24px 20px; }
+
+  /* Benefits */
+  .bv-benefits-grid .bv-benefit-card { max-width: 100%; }
+
+  /* Fee breakdown */
+  .bv-feebreak { padding: 24px 18px; border-radius: 16px; }
   .bv-feebreak-row-figures { gap: 8px; }
   .bv-feebreak-row-amount { font-size: 12.5px; }
+
+  /* Steps */
+  .bv-step { grid-template-columns: 48px 1fr; gap: 16px; }
+  .bv-step-num { font-size: 28px; }
+
+  /* CTA */
+  .bv-cta-inner { padding: 40px 20px; border-radius: 16px; }
+  .bv-cta-headline { font-size: clamp(24px, 7vw, 36px); }
+
+  /* Form */
+  .bv-form-row { grid-template-columns: 1fr; }
+
+  /* Footer */
+  .bv-footer { padding: 36px 0 24px; }
   .bv-footer-bottom { flex-direction: column; gap: 8px; }
 }

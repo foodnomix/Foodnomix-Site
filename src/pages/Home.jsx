@@ -538,12 +538,30 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState('')
   const [activeService, setActiveService] = useState(0)
   const [outgoingService, setOutgoingService] = useState(null)
+  const [isMobile, setIsMobile] = useState(false)
   const [heroRef, heroVisible] = useReveal(0.01)
   const servicesRef = useRef(null)
   const lastActiveRef = useRef(0)
   const shape1Ref = useParallax(0.15)
   const shape2Ref = useParallax(0.25)
   const shape3Ref = useParallax(0.1)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 900px)')
+    setIsMobile(mq.matches)
+    const onChange = (e) => setIsMobile(e.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+
+  // Auto-cycle services on mobile
+  useEffect(() => {
+    if (!isMobile) return
+    const interval = setInterval(() => {
+      setActiveService(prev => (prev + 1) % SERVICES.length)
+    }, 3500)
+    return () => clearInterval(interval)
+  }, [isMobile])
 
   // Track outgoing service card for slide-cover transition
   useEffect(() => {
@@ -570,18 +588,20 @@ export default function Home() {
       }
       setActiveSection(active)
 
-      const svcsEl = servicesRef.current
-      if (svcsEl) {
-        const scrollable = svcsEl.offsetHeight - window.innerHeight
-        const scrolled = scrollY - svcsEl.offsetTop
-        if (scrolled >= 0 && scrolled <= scrollable) {
-          setActiveService(Math.min(SERVICES.length - 1, Math.floor((scrolled / scrollable) * SERVICES.length)))
+      if (!isMobile) {
+        const svcsEl = servicesRef.current
+        if (svcsEl) {
+          const scrollable = svcsEl.offsetHeight - window.innerHeight
+          const scrolled = scrollY - svcsEl.offsetTop
+          if (scrolled >= 0 && scrolled <= scrollable) {
+            setActiveService(Math.min(SERVICES.length - 1, Math.floor((scrolled / scrollable) * SERVICES.length)))
+          }
         }
       }
     }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  }, [isMobile])
 
   // Global scroll-reveal for section labels, headlines, and about paragraphs
   useEffect(() => {
@@ -608,6 +628,14 @@ export default function Home() {
   return (
     <div className="home">
 
+      {/* SEO — page-specific title / meta (React 19 hoists these into <head>) */}
+      <title>Foodnomix | Online Business Management for Restaurants on Swiggy &amp; Zomato</title>
+      <meta name="description" content="Foodnomix is the online business management partner for Indian restaurants on Swiggy and Zomato. Menu strategy, offers, marketing and settlement analysis, all handled for you." />
+      <link rel="canonical" href="https://foodnomix.in/" />
+      <meta property="og:title" content="Foodnomix | Online Business Management for Restaurants on Swiggy &amp; Zomato" />
+      <meta property="og:description" content="Menu, offers, marketing and payouts. Fully managed for restaurants on Swiggy and Zomato." />
+      <meta property="og:url" content="https://foodnomix.in/" />
+
       {/* ── NAV ── */}
       <nav className={`nav ${scrolled ? 'nav--scrolled' : ''}`}>
         <div className="nav-inner">
@@ -625,12 +653,21 @@ export default function Home() {
             </a>
             <Link to="/bytevalue" className="nav-product" onClick={() => setNavOpen(false)} aria-label="ByteValue product">
               <span className="nav-product-icon" aria-hidden="true">
-                <img src="/logos/bytevalue-logo.svg" alt="" className="nav-product-icon-img" />
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect className="nav-bv-bar nav-bv-bar--1" x="3"  y="14" width="4" height="7"  rx="1" fill="#00BF8F" />
+                  <rect className="nav-bv-bar nav-bv-bar--2" x="9"  y="9"  width="4" height="12" rx="1" fill="#00BF8F" />
+                  <rect className="nav-bv-bar nav-bv-bar--3" x="15" y="5"  width="4" height="16" rx="1" fill="#00BF8F" />
+                </svg>
               </span>
               <span className="nav-product-title">ByteValue</span>
             </Link>
           </div>
-          <button className="nav-hamburger" onClick={() => setNavOpen(o => !o)} aria-label="Menu">
+          <button
+            className={`nav-hamburger ${navOpen ? 'nav-hamburger--open' : ''}`}
+            onClick={() => setNavOpen(o => !o)}
+            aria-label={navOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={navOpen}
+          >
             <span /><span /><span />
           </button>
         </div>
@@ -646,15 +683,6 @@ export default function Home() {
         </div>
 
         <div className="hero-inner">
-          {/* Badge — decorative, floats in corner outside content flow */}
-          <div className="hero-badge-dec">
-            <RotatingBadge
-              text="ONLINE BUSINESS MANAGEMENT · GROWTH PARTNER · "
-              center={<span style={{ fontSize: 16 }}>🍽</span>}
-              size={88}
-            />
-          </div>
-
           <div className={`hero-content ${heroVisible ? 'revealed' : ''}`}>
             <h1 className="hero-headline">
               <span className="hero-line-1">Your restaurant,</span>
@@ -680,11 +708,6 @@ export default function Home() {
 
           <div className="hero-visual">
             <ManagementCockpit />
-          </div>
-
-          <div className="hero-scroll-hint">
-            <span>Scroll</span>
-            <div className="scroll-line" />
           </div>
         </div>
       </section>
@@ -781,6 +804,18 @@ export default function Home() {
                     <ServiceSlide index={activeService} />
                   </div>
                 </div>
+                {isMobile && (
+                  <div className="svc-dots">
+                    {SERVICES.map((_, i) => (
+                      <button
+                        key={i}
+                        className={`svc-dot ${activeService === i ? 'svc-dot--active' : ''}`}
+                        onClick={() => setActiveService(i)}
+                        aria-label={`Service ${i + 1}`}
+                      />
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </div>

@@ -313,7 +313,11 @@ function MobilePhone() {
             <div className="mp-app-head">
               <div className="mp-app-brand">
                 <span className="mp-app-icon">
-                  <img src="/logos/bytevalue-logo.svg" alt="" />
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="3"  y="14" width="4" height="7"  rx="1" fill="#00BF8F" />
+                    <rect x="9"  y="9"  width="4" height="12" rx="1" fill="#00BF8F" />
+                    <rect x="15" y="5"  width="4" height="16" rx="1" fill="#00BF8F" />
+                  </svg>
                 </span>
                 <div>
                   <div className="mp-app-name">ByteValue</div>
@@ -473,12 +477,12 @@ const FEATURE_ICONS = [
 ]
 
 const FEATURES = [
-  { title: 'Settlement upload', desc: 'Download your payout settlement file from the Swiggy or Zomato partner portal and drop it into ByteValue. Data stays private. No platform login required.' },
+  { title: 'You just share the reports', desc: 'Send us your Swiggy and Zomato settlement files on WhatsApp or email. That is the only thing you do. We build the ByteValue report for you.' },
+  { title: 'Your data stays private', desc: 'We understand your data is valuable. Your settlement files, sales, and item information are never shared with third parties or resold. Ever.' },
   { title: 'Complete fee breakdown', desc: 'See exactly how much revenue you generated, what the platform took as commission and ads, what went to taxes, and what actually reached your account.' },
-  { title: 'Fortnight item tracking', desc: 'Track your top-selling items across each settlement period. Spot which dishes are driving volume and which are being discounted away.' },
-  { title: 'Net per item', desc: 'After every deduction is distributed proportionally, ByteValue tells you the real net amount each dish earned. The number that changes pricing decisions.' },
-  { title: 'Period-on-period trends', desc: 'ByteValue compares each settlement period against the last. Catch declining payouts or falling item performance before it becomes a bigger problem.' },
-  { title: 'Every key metric', desc: 'Average order value, total orders, gross revenue, net payout. Everything you need in one place, for every settlement period. No spreadsheets required.' },
+  { title: 'Net per item, ranked', desc: 'After every deduction is distributed proportionally, we show the real net amount each dish earned. The number that changes your pricing decisions.' },
+  { title: 'Read on any device', desc: 'Your ByteValue report opens cleanly on mobile, tablet, or laptop. Check your numbers on the way to the kitchen or on the couch after service.' },
+  { title: 'Designed to be scanned', desc: 'A simple, quiet layout that keeps you focused on the numbers, not the interface. Every screen answers one question. No dashboards to learn.' },
 ]
 
 const BENEFIT_ICONS = [
@@ -490,11 +494,11 @@ const BENEFIT_ICONS = [
 ]
 
 const BENEFITS = [
-  { title: 'Save time', desc: 'Get your earnings picture instantly instead of parsing lengthy platform statements by hand. What used to take hours takes seconds.' },
-  { title: 'Financial clarity', desc: 'Know exactly how much was earned, deducted, and paid out for every settlement period. No more guessing where your money went.' },
-  { title: 'Smarter menu decisions', desc: 'ByteValue reveals which items are truly profitable at the platform-net level. Adjust pricing or promote high-margin dishes based on real numbers.' },
-  { title: 'Early trend detection', desc: 'Period-over-period tracking lets you catch declining payouts or item performance before it becomes a bigger issue. Act early, not too late.' },
-  { title: 'Confidence & leverage', desc: 'A clear, consistent report builds trust in your own numbers. If something looks off on a settlement, you now have the data to question it.' },
+  { title: 'Zero effort', desc: 'You do not read spreadsheets, you do not run reports. Share your settlement files and your ByteValue report is ready. Focus on the kitchen, not the paperwork.' },
+  { title: 'Your data, protected', desc: 'Your settlement data is valuable and we treat it that way. Stored securely, never shared, never used to train anything. Only you and your team see it.' },
+  { title: 'Any device, anytime', desc: 'Mobile, tablet, or laptop. Your ByteValue report adapts to any screen, so you can check performance from the counter or from home.' },
+  { title: 'Numbers before noise', desc: 'A clean, simple layout that shows the number first and the explanation second. You spend seconds understanding what matters, not minutes decoding it.' },
+  { title: 'Smarter menu decisions', desc: 'Once you see net per item, pricing and promotion decisions get obvious. Reprice underpriced dishes and cut items that only look profitable on paper.' },
 ]
 
 function FeatureCard({ icon, title, desc, index }) {
@@ -541,6 +545,19 @@ export default function ByteValue() {
   return (
     <div className="bv-page">
 
+      {/* SEO — page-specific title / meta (React 19 hoists these into <head>) */}
+      <title>ByteValue by Foodnomix | Profit Intelligence Reports for Swiggy &amp; Zomato</title>
+      <meta name="description" content="ByteValue turns your Swiggy and Zomato settlement reports into a clean, readable profit report. Share your files, we build the report. Any device, private, no spreadsheets." />
+      <link rel="canonical" href="https://foodnomix.in/bytevalue" />
+      <meta name="theme-color" content="#EEF3FF" />
+      <meta property="og:title" content="ByteValue by Foodnomix | Profit Intelligence Reports for Swiggy &amp; Zomato" />
+      <meta property="og:description" content="Share your settlement reports. We generate a clean ByteValue profit report you can read on any device." />
+      <meta property="og:url" content="https://foodnomix.in/bytevalue" />
+      <meta property="og:image" content="https://foodnomix.in/og-bytevalue.svg" />
+      <meta name="twitter:title" content="ByteValue by Foodnomix | Profit Intelligence Reports for Swiggy &amp; Zomato" />
+      <meta name="twitter:description" content="Share your settlement reports. We generate a clean ByteValue profit report you can read on any device." />
+      <meta name="twitter:image" content="https://foodnomix.in/og-bytevalue.svg" />
+
       {/* NAV */}
       <nav className={`bv-nav ${scrolled ? 'bv-nav--scrolled' : ''}`}>
         <div className="bv-nav-inner">
@@ -562,14 +579,6 @@ export default function ByteValue() {
         </div>
 
         <div className="bv-hero-inner">
-          <div className="bv-hero-badge-corner">
-            <RotatingBadge
-              text="PROFIT INTELLIGENCE · SWIGGY & ZOMATO · "
-              center={<span style={{ fontSize: 18 }}>📊</span>}
-              size={96}
-            />
-          </div>
-
           <div className={`bv-hero-copy ${heroVisible ? 'revealed' : ''}`}>
             <div className="bv-hero-eyebrow">
               <span className="bv-hero-eyebrow-dot" />
@@ -577,10 +586,10 @@ export default function ByteValue() {
             </div>
             <h1 className="bv-hero-headline">
               <span>Your restaurant data,</span>
-              <em>decoded.</em>
+              <em>decoded for you.</em>
             </h1>
             <p className="bv-hero-sub">
-              ByteValue turns your Swiggy and Zomato settlement data into something you can actually understand. A clean, visual dashboard with no spreadsheets and no guesswork. Built for restaurant owners, not accountants.
+              Just share your Swiggy and Zomato settlement reports. We turn them into a clean ByteValue report you can read at a glance. No spreadsheets, no guesswork. Built for restaurant owners, not accountants.
             </p>
             <div className="bv-hero-actions">
               <a href="#contact" className="bv-btn-primary">Get access</a>
@@ -588,13 +597,13 @@ export default function ByteValue() {
             </div>
             <div className="bv-hero-trust">
               <div className="bv-hero-trust-item">
-                <span className="bv-trust-num">30s</span>
-                <span className="bv-trust-label">from upload to insight</span>
+                <span className="bv-trust-num">Any</span>
+                <span className="bv-trust-label">device, mobile or laptop</span>
               </div>
               <div className="bv-hero-trust-sep" />
               <div className="bv-hero-trust-item">
                 <span className="bv-trust-num">100%</span>
-                <span className="bv-trust-label">of your settlement, decoded</span>
+                <span className="bv-trust-label">private, never shared</span>
               </div>
               <div className="bv-hero-trust-sep" />
               <div className="bv-hero-trust-item">
@@ -606,11 +615,6 @@ export default function ByteValue() {
 
           <div className="bv-hero-visual">
             <MobilePhone />
-          </div>
-
-          <div className="bv-hero-scroll-hint">
-            <span>Scroll</span>
-            <div className="bv-scroll-line" />
           </div>
         </div>
       </section>
@@ -630,7 +634,7 @@ export default function ByteValue() {
                 Every settlement period, Swiggy and Zomato send you a payout report. But these reports are dense, confusing, and hard to act on. Between platform commissions, ad charges, offer deductions, taxes, and other fees, the number that hits your account can be 28 to 35 percent lower than your gross sales.
               </p>
               <p className="bv-problem-body">
-                Most restaurant owners never work through this breakdown. They do not know which dishes are profitable after platform deductions. They cannot make informed pricing decisions. ByteValue changes that.
+                Most restaurant owners never work through this breakdown. They do not know which dishes are profitable after platform deductions. They cannot make informed pricing decisions. Share your settlement reports with us and we generate a clean ByteValue report that shows everything you need to know.
               </p>
               <div className="bv-callout">
                 <div className="bv-callout-figure">
@@ -731,9 +735,9 @@ export default function ByteValue() {
           </h2>
           <div className="bv-steps">
             {[
-              { num: '01', title: 'Download your settlement', desc: 'Log in to your Swiggy or Zomato partner portal and download the payout settlement file for the period. One click from the Payments section.' },
-              { num: '02', title: 'Upload to ByteValue', desc: 'Drop the file into ByteValue. Our parser reads every line: gross sales, commissions, ad charges, offer deductions, taxes, and all other fees.' },
-              { num: '03', title: 'Get your picture instantly', desc: 'Your analysis is ready in seconds. Net payout, fee breakdown, top items, net per dish, and period-on-period trends. Everything in one clear view.' },
+              { num: '01', title: 'Share your settlement files', desc: 'Download your Swiggy and Zomato payout reports from the partner portal and send them to us on WhatsApp or email. That is the only thing you need to do.' },
+              { num: '02', title: 'We build your ByteValue report', desc: 'Our team processes every line of your settlement: gross sales, commissions, ad charges, offer deductions, taxes, and fees. Your data stays private and is never shared.' },
+              { num: '03', title: 'Read it on any device', desc: 'Open your ByteValue report on mobile, tablet, or laptop. A clean, simple design that keeps you focused on the numbers, not the noise.' },
             ].map(({ num, title, desc }, i) => {
               const [ref, visible] = useReveal()
               return (

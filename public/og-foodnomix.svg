@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#060D20"/>
+      <stop offset="1" stop-color="#0D1635"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.85" cy="0.15" r="0.55">
+      <stop offset="0" stop-color="#E5410D" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#E5410D" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Subtle grid pattern -->
+  <g stroke="#EDF2FF" stroke-opacity="0.04" stroke-width="1">
+    <line x1="0" y1="105" x2="1200" y2="105"/>
+    <line x1="0" y1="210" x2="1200" y2="210"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="525" x2="1200" y2="525"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="90" y="260" fill="#EDF2FF" font-family="Montserrat, sans-serif" font-weight="900" font-size="120" letter-spacing="-4">FOOD<tspan fill="#E5410D">NOMIX</tspan></text>
+
+  <!-- Tagline -->
+  <text x="90" y="340" fill="#6B7EAD" font-family="Inter, sans-serif" font-weight="500" font-size="26" letter-spacing="4">GROWTH  ·  PROFIT  ·  INSIGHTS</text>
+
+  <!-- Main line -->
+  <text x="90" y="480" fill="#EDF2FF" font-family="Montserrat, sans-serif" font-weight="800" font-size="52" letter-spacing="-1.5">Your restaurant, <tspan fill="#E5410D" font-style="italic">more profitable.</tspan></text>
+
+  <!-- Sub -->
+  <text x="90" y="540" fill="#6B7EAD" font-family="Inter, sans-serif" font-weight="400" font-size="24">Online business management for restaurants on Swiggy and Zomato.</text>
+
+  <!-- Accent line -->
+  <rect x="90" y="573" width="60" height="3" rx="1.5" fill="#E5410D"/>
+</svg>

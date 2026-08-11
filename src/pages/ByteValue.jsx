@@ -119,6 +119,26 @@ function ViewPayout() {
         </div>
       </div>
 
+      <div className="mp-comp">
+        <div className="mp-comp-head">
+          <span className="mp-comp-title">Where the money went</span>
+          <span className="mp-comp-total">of ₹2,89,384</span>
+        </div>
+        <div className="mp-comp-bar" role="img" aria-label="Composition of gross revenue">
+          <span className="mp-comp-seg mp-comp-seg--net" style={{ width: '43.2%' }} />
+          <span className="mp-comp-seg mp-comp-seg--fee" style={{ width: '22.2%' }} />
+          <span className="mp-comp-seg mp-comp-seg--ads" style={{ width: '12.6%' }} />
+          <span className="mp-comp-seg mp-comp-seg--tax" style={{ width: '8.7%' }} />
+          <span className="mp-comp-seg mp-comp-seg--other" style={{ width: '13.3%' }} />
+        </div>
+        <div className="mp-comp-legend">
+          <span className="mp-comp-item"><i className="mp-comp-sw mp-comp-sw--net" />Net 43.2%</span>
+          <span className="mp-comp-item"><i className="mp-comp-sw mp-comp-sw--fee" />Fee 22.2%</span>
+          <span className="mp-comp-item"><i className="mp-comp-sw mp-comp-sw--ads" />Ads 12.6%</span>
+          <span className="mp-comp-item"><i className="mp-comp-sw mp-comp-sw--tax" />Tax 8.7%</span>
+        </div>
+      </div>
+
       <div className="mp-final">
         <div className="mp-final-topline" />
         <div className="mp-final-left">
@@ -321,7 +341,7 @@ function MobilePhone() {
                 </span>
                 <div>
                   <div className="mp-app-name">ByteValue</div>
-                  <div className="mp-app-restaurant">Hello Kitchen</div>
+                  <div className="mp-app-restaurant">Hyderabad House</div>
                 </div>
               </div>
               <div className="mp-live">

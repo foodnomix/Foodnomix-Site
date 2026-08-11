@@ -2124,10 +2124,12 @@
   .bv-hero { min-height: auto; }
   .bv-hero-inner {
     padding: 90px 20px 48px;
-    gap: 36px;
+    gap: 28px;
   }
-  .bv-hero-copy { padding-top: 0; }
-  .bv-hero-headline { font-size: clamp(28px, 8vw, 40px); margin-bottom: 16px; }
+  /* Phone visual FIRST, then the copy — matches Foodnomix mobile pattern */
+  .bv-hero-visual { order: 1; }
+  .bv-hero-copy   { order: 2; padding-top: 0; }
+  .bv-hero-headline { font-size: clamp(26px, 7.5vw, 38px); margin-bottom: 14px; }
   .bv-hero-sub { font-size: 14px; margin-bottom: 16px; }
   .bv-hero-trust {
     display: flex;
@@ -2135,21 +2137,26 @@
     gap: 12px;
     font-size: 12px;
     width: 100%;
-    padding: 18px 20px;
+    padding: 16px 18px;
   }
   .bv-hero-trust-sep { width: 100%; height: 1px; }
   .bv-hero-actions {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px 20px;
   }
-  .bv-btn-primary,
-  .bv-btn-ghost {
+  .bv-btn-primary {
     text-align: center;
     justify-content: center;
-    width: 100%;
-    padding: 14px 24px;
-    font-size: 14px;
+    width: auto;
+    padding: 12px 22px;
+    font-size: 13.5px;
+  }
+  .bv-btn-ghost {
+    padding: 12px 0;
+    font-size: 13.5px;
+    width: auto;
   }
   .bv-hero-badge-corner {
     top: 86px;
@@ -2172,8 +2179,9 @@
   /* Hide the long tail on mobile so the pill fits on one line */
   .bv-hero-eyebrow-long { display: none; }
 
-  /* Phone — bigger on mobile so content breathes */
+  /* Phone — bigger on mobile so content breathes; keep order:1 so it renders above the copy */
   .bv-hero-visual {
+    order: 1;
     height: 600px;
     max-width: 100%;
     perspective: 1400px;

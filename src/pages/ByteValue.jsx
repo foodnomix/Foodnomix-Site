@@ -439,6 +439,7 @@ function FeeBreakdown() {
 /* Top items table with elevated card treatment */
 function TopItemsTable() {
   const [ref, visible] = useReveal()
+  const scrollRef = useRef(null)
   const items = [
     { rank: 1, name: 'Butter Chicken', qty: 184, gross: '₹320', net: '₹198', margin: '62%' },
     { rank: 2, name: 'Biryani Special', qty: 162, gross: '₹280', net: '₹172', margin: '61%' },
@@ -446,6 +447,51 @@ function TopItemsTable() {
     { rank: 4, name: 'Dal Makhani', qty: 98, gross: '₹180', net: '₹104', margin: '58%' },
     { rank: 5, name: 'Naan Basket', qty: 76, gross: '₹120', net: '₹67', margin: '56%' },
   ]
+
+  // Auto ping-pong horizontal scroll on mobile — pauses briefly on user interaction
+  useEffect(() => {
+    const el = scrollRef.current
+    if (!el) return
+    let raf = 0
+    let dir = 1 // 1 = forward, -1 = back
+    let pausedUntil = 0
+    let dwellUntil = 0
+    const speed = 0.35 // px per frame — slow, readable
+    const step = () => {
+      const now = performance.now()
+      const max = el.scrollWidth - el.clientWidth
+      // If content fits (no overflow), stop the loop.
+      if (max <= 2) return
+      if (now >= pausedUntil && now >= dwellUntil) {
+        const next = el.scrollLeft + dir * speed
+        if (next >= max) {
+          el.scrollLeft = max
+          dir = -1
+          dwellUntil = now + 900 // pause at the far edge
+        } else if (next <= 0) {
+          el.scrollLeft = 0
+          dir = 1
+          dwellUntil = now + 900 // pause at the near edge
+        } else {
+          el.scrollLeft = next
+        }
+      }
+      raf = requestAnimationFrame(step)
+    }
+    // Pause the loop for 3.5s whenever the user interacts
+    const pause = () => { pausedUntil = performance.now() + 3500 }
+    el.addEventListener('touchstart', pause, { passive: true })
+    el.addEventListener('mousedown',  pause)
+    el.addEventListener('wheel',      pause, { passive: true })
+    raf = requestAnimationFrame(step)
+    return () => {
+      cancelAnimationFrame(raf)
+      el.removeEventListener('touchstart', pause)
+      el.removeEventListener('mousedown',  pause)
+      el.removeEventListener('wheel',      pause)
+    }
+  }, [])
+
   return (
     <div ref={ref} className={`bv-items-card ${visible ? 'revealed' : ''}`}>
       <div className="bv-items-card-head">
@@ -455,7 +501,7 @@ function TopItemsTable() {
         </div>
         <span className="bv-items-card-platform">Swiggy</span>
       </div>
-      <div className="bv-items-card-scroll">
+      <div className="bv-items-card-scroll" ref={scrollRef}>
         <table className="bv-items-table">
           <thead>
             <tr>

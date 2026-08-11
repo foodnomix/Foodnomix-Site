@@ -2335,25 +2335,68 @@
   .bv-callout-desc { font-size: 13.5px; }
   .bv-problem-body { font-size: 15px; margin-bottom: 14px; }
 
-  /* Features */
-  .bv-feat-grid { grid-template-columns: 1fr; }
-  .bv-feat-card { padding: 24px 20px; }
+  /* Features — compact card, tighter grid */
+  .bv-feat-grid { grid-template-columns: 1fr; gap: 12px; }
+  .bv-feat-card {
+    padding: 20px 18px 18px;
+    border-radius: 14px;
+    border: 1px solid var(--bv-border);
+  }
+  .bv-feat-card-num { font-size: 10px; margin-bottom: 10px; letter-spacing: 0.14em; }
+  .bv-feat-card-icon { width: 30px; height: 30px; margin-bottom: 12px; }
+  .bv-feat-card-title { font-size: 15px; margin-bottom: 6px; }
+  .bv-feat-card-desc { font-size: 12.5px; line-height: 1.6; }
 
-  /* Benefits */
-  .bv-benefits-grid .bv-benefit-card { max-width: 100%; }
+  /* Benefits — compact card */
+  .bv-benefits-grid { gap: 12px; }
+  .bv-benefits-grid .bv-benefit-card {
+    max-width: 100%;
+    padding: 20px 18px 18px;
+    border-radius: 14px;
+  }
+  .bv-benefit-icon { width: 26px; height: 26px; margin-bottom: 12px; }
+  .bv-benefit-title { font-size: 15px; margin-bottom: 6px; }
+  .bv-benefit-desc { font-size: 12.5px; line-height: 1.6; }
 
-  /* Fee breakdown */
-  .bv-feebreak { padding: 24px 18px; border-radius: 16px; }
-  .bv-feebreak-row-figures { gap: 8px; }
-  .bv-feebreak-row-amount { font-size: 12.5px; }
+  /* Fee breakdown — compact */
+  .bv-feebreak { padding: 20px 18px 18px; border-radius: 16px; }
+  .bv-feebreak-eyebrow { font-size: 10px; margin-bottom: 6px; }
+  .bv-feebreak-title { font-size: 17px; margin-bottom: 4px; }
+  .bv-feebreak-total-label { font-size: 10px; }
+  .bv-feebreak-total-value { font-size: 20px; }
+  .bv-feebreak-bars { gap: 10px; margin-top: 16px; }
+  .bv-feebreak-row-label { font-size: 12.5px; }
+  .bv-feebreak-row-figures { gap: 6px; }
+  .bv-feebreak-row-amount { font-size: 12px; }
+  .bv-feebreak-row-pct { font-size: 10.5px; }
+  .bv-feebreak-foot { font-size: 11px; margin-top: 12px; }
 
-  /* Steps */
-  .bv-step { grid-template-columns: 48px 1fr; gap: 16px; }
-  .bv-step-num { font-size: 28px; }
+  /* Top items card — compact + scroll cue */
+  .bv-items-card { padding: 20px 18px 18px; border-radius: 16px; }
+  .bv-items-card-head { margin-bottom: 12px; }
+  .bv-items-card-eyebrow { font-size: 9px; letter-spacing: 0.10em; }
+  .bv-items-card-title { font-size: 16px; }
+  .bv-items-card-platform { font-size: 10px; padding: 4px 10px; }
+  .bv-items-card-scroll { border-radius: 8px; }
+  .bv-items-table th { font-size: 9.5px; padding: 10px 10px; }
+  .bv-items-table td { padding: 10px 10px; font-size: 12.5px; }
+  .bv-items-note { font-size: 11.5px; line-height: 1.55; margin-top: 12px; }
 
-  /* CTA */
-  .bv-cta-inner { padding: 40px 20px; border-radius: 16px; }
-  .bv-cta-headline { font-size: clamp(24px, 7vw, 36px); }
+  /* Steps — compact */
+  .bv-how-headline { margin-bottom: 32px; }
+  .bv-steps { gap: 4px; }
+  .bv-step { grid-template-columns: 40px 1fr; gap: 14px; padding: 20px 0; }
+  .bv-step-num { font-size: 24px; padding-bottom: 4px; }
+  .bv-step-connector { left: 10px; top: 40px; }
+  .bv-step-title { font-size: 17px; margin-bottom: 6px; }
+  .bv-step-desc { font-size: 13px; line-height: 1.6; }
+
+  /* CTA — compact */
+  .bv-cta-inner { padding: 32px 20px 28px; border-radius: 16px; }
+  .bv-cta-badge { font-size: 9px; padding: 5px 12px; margin-bottom: 16px; }
+  .bv-cta-headline { font-size: clamp(22px, 6.5vw, 32px); margin-bottom: 10px; }
+  .bv-cta-sub { font-size: 13.5px; margin-bottom: 20px; }
+  .bv-input { padding: 12px 14px; font-size: 13.5px; border-radius: 10px; }
 
   /* Form */
   .bv-form-row { grid-template-columns: 1fr; }

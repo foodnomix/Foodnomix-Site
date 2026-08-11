@@ -554,14 +554,38 @@ export default function Home() {
     return () => mq.removeEventListener('change', onChange)
   }, [])
 
-  // Auto-cycle services on mobile
+  // Auto-cycle services on mobile — pauses briefly after the user interacts
+  const [svcUserPaused, setSvcUserPaused] = useState(0)
   useEffect(() => {
     if (!isMobile) return
     const interval = setInterval(() => {
       setActiveService(prev => (prev + 1) % SERVICES.length)
-    }, 3500)
+    }, 4500)
     return () => clearInterval(interval)
-  }, [isMobile])
+  }, [isMobile, svcUserPaused])
+
+  const nudgeService = (delta) => {
+    setActiveService(prev => (prev + delta + SERVICES.length) % SERVICES.length)
+    setSvcUserPaused(x => x + 1) // resets the auto-cycle timer
+  }
+
+  // Swipe handling for the service stage on mobile
+  const svcTouch = useRef({ x: 0, y: 0, active: false })
+  const onSvcTouchStart = (e) => {
+    const t = e.touches[0]
+    svcTouch.current = { x: t.clientX, y: t.clientY, active: true }
+  }
+  const onSvcTouchEnd = (e) => {
+    if (!svcTouch.current.active) return
+    const t = e.changedTouches[0]
+    const dx = t.clientX - svcTouch.current.x
+    const dy = t.clientY - svcTouch.current.y
+    svcTouch.current.active = false
+    // Horizontal swipe with a threshold and vertical tolerance
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+      nudgeService(dx < 0 ? 1 : -1)
+    }
+  }
 
   // Track outgoing service card for slide-cover transition
   useEffect(() => {
@@ -803,7 +827,11 @@ export default function Home() {
                 </div>
               </div>
               <div className="services-right-col">
-                <div className="svc-stage">
+                <div
+                  className="svc-stage"
+                  onTouchStart={isMobile ? onSvcTouchStart : undefined}
+                  onTouchEnd={isMobile ? onSvcTouchEnd : undefined}
+                >
                   {outgoingService !== null && outgoingService !== activeService && (
                     <div key={`out-${outgoingService}`} className="svc-slide-wrap svc-slide-wrap--exiting">
                       <ServiceSlide index={outgoingService} />
@@ -814,15 +842,37 @@ export default function Home() {
                   </div>
                 </div>
                 {isMobile && (
-                  <div className="svc-dots">
-                    {SERVICES.map((_, i) => (
-                      <button
-                        key={i}
-                        className={`svc-dot ${activeService === i ? 'svc-dot--active' : ''}`}
-                        onClick={() => setActiveService(i)}
-                        aria-label={`Service ${i + 1}`}
-                      />
-                    ))}
+                  <div className="svc-mobile-nav">
+                    <button
+                      type="button"
+                      className="svc-arrow svc-arrow--prev"
+                      onClick={() => nudgeService(-1)}
+                      aria-label="Previous service"
+                    >
+                      <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="12,4 6,10 12,16" />
+                      </svg>
+                    </button>
+                    <div className="svc-dots">
+                      {SERVICES.map((_, i) => (
+                        <button
+                          key={i}
+                          className={`svc-dot ${activeService === i ? 'svc-dot--active' : ''}`}
+                          onClick={() => { setActiveService(i); setSvcUserPaused(x => x + 1) }}
+                          aria-label={`Go to service ${i + 1}`}
+                        />
+                      ))}
+                    </div>
+                    <button
+                      type="button"
+                      className="svc-arrow svc-arrow--next"
+                      onClick={() => nudgeService(1)}
+                      aria-label="Next service"
+                    >
+                      <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="8,4 14,10 8,16" />
+                      </svg>
+                    </button>
                   </div>
                 )}
               </div>

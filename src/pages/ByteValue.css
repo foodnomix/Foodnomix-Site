@@ -2301,12 +2301,39 @@
   /* Home indicator */
   .mp-home-indicator { width: 90px; height: 4px; bottom: 8px; }
 
-  /* Sections */
-  .bv-section-label { margin-bottom: 20px; }
+  /* Sections — tighter vertical rhythm on mobile */
+  .bv-section-label { margin-bottom: 16px; }
   .bv-section-headline {
     font-size: clamp(24px, 7vw, 36px);
-    margin-bottom: 32px;
+    margin-bottom: 20px;
   }
+
+  /* Compress the tall desktop section paddings on mobile */
+  .bv-problem       { padding: 56px 0 56px; }
+  .bv-features      { padding: 56px 0 56px; }
+  .bv-table-section { padding: 56px 0 56px; }
+  .bv-benefits      { padding: 56px 0 56px; }
+  .bv-how           { padding: 56px 0 72px; }
+  .bv-cta           { padding: 56px 0 72px; }
+
+  /* Inside a stacked grid the headline's margin-bottom + grid gap doubled up.
+     Reset headline margin here so the grid gap alone controls spacing. */
+  .bv-problem-grid { gap: 20px; }
+  .bv-problem-grid .bv-section-headline { margin-bottom: 0; }
+  .bv-features-head { gap: 16px; }
+  .bv-features-head .bv-section-headline { margin-bottom: 0; }
+  .bv-benefits-head { gap: 16px; }
+  .bv-benefits-head .bv-section-headline { margin-bottom: 0; }
+  .bv-table-head { gap: 16px; }
+  .bv-table-head .bv-section-headline { margin-bottom: 0; }
+
+  /* Callout — bring it closer to the body text above it */
+  .bv-callout { margin-top: 16px; padding: 20px 20px; }
+  .bv-callout-num { font-size: 34px; }
+  .bv-callout-unit { font-size: 12px; }
+  .bv-callout-title { font-size: 15px; }
+  .bv-callout-desc { font-size: 13.5px; }
+  .bv-problem-body { font-size: 15px; margin-bottom: 14px; }
 
   /* Features */
   .bv-feat-grid { grid-template-columns: 1fr; }

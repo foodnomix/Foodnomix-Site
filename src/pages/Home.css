@@ -13,14 +13,28 @@
   right: 0;
   z-index: 100;
   padding: 24px 0;
-  transition: background var(--transition), padding var(--transition), backdrop-filter var(--transition);
+  transition: padding var(--transition);
 }
-.nav--scrolled {
+/* Backdrop lives on a pseudo-element so it does NOT create a containing block.
+   If backdrop-filter were on .nav itself, position: fixed children like the
+   mobile menu overlay would be constrained to the nav bar instead of the
+   full viewport. */
+.nav::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(12, 11, 9, 0);
+  border-bottom: 1px solid transparent;
+  transition: background var(--transition), border-color var(--transition);
+  pointer-events: none;
+  z-index: -1;
+}
+.nav--scrolled { padding: 16px 0; }
+.nav--scrolled::before {
   background: rgba(12, 11, 9, 0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  padding: 16px 0;
-  border-bottom: 1px solid var(--fn-border);
+  border-bottom-color: var(--fn-border);
 }
 .nav-inner {
   max-width: 1200px;
@@ -2348,12 +2362,47 @@
   animation: svcDotPulse 1.4s ease-in-out infinite;
 }
 
-/* Mobile service pagination dots */
+/* Mobile service pagination — arrows on the sides, dots centered */
+.svc-mobile-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 22px;
+}
+.svc-arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(229, 65, 13, 0.08);
+  border: 1px solid rgba(229, 65, 13, 0.28);
+  color: var(--fn-accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.svc-arrow:hover,
+.svc-arrow:active {
+  background: rgba(229, 65, 13, 0.18);
+  border-color: rgba(229, 65, 13, 0.55);
+  box-shadow: 0 6px 14px -6px rgba(229, 65, 13, 0.5);
+  transform: translateY(-1px);
+}
+.svc-arrow:active { transform: scale(0.95); }
+.svc-arrow svg { display: block; }
+
 .svc-dots {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 10px;
-  margin-top: 20px;
 }
 .svc-dot {
   width: 8px;
@@ -2363,12 +2412,20 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s, width 0.3s;
+  -webkit-tap-highlight-color: transparent;
 }
 .svc-dot--active {
   background: var(--fn-accent);
-  transform: scale(1.35);
+  transform: scale(1.15);
   box-shadow: 0 0 10px rgba(229, 65, 13, 0.55);
+  width: 22px;
+  border-radius: 4px;
+}
+
+/* Make the stage swipeable — hint the browser, and reserve visual room */
+.svc-stage {
+  touch-action: pan-y;
 }
 
 /* BYTEVALUE TEASER */

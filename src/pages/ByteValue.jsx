@@ -696,6 +696,42 @@ export default function ByteValue() {
               <h2 className="bv-section-headline">
                 Dense reports.<br /><em>No clarity.</em>
               </h2>
+              {/* Stylized "raw settlement PDF" mockup — shows the chaos the copy
+                  on the right describes: dozens of confusing line items, no
+                  clear net-per-item, ending in a question mark. */}
+              <div className="bv-problem-mock" aria-hidden="true">
+                <div className="bv-problem-mock-head">
+                  <div className="bv-problem-mock-tag">
+                    <span className="bv-problem-mock-dot" />
+                    Swiggy · Settlement PDF · 47 pages
+                  </div>
+                  <span className="bv-problem-mock-meta">Aug 1 – 15</span>
+                </div>
+                <div className="bv-problem-mock-rows">
+                  {[
+                    ['Gross order value', '+₹4,82,340', 'in'],
+                    ['Merchant discount share', '−₹32,120', 'out'],
+                    ['Platform commission (22.5%)', '−₹1,08,527', 'out'],
+                    ['Ad service charge', '−₹18,240', 'out'],
+                    ['GST on commission', '−₹19,535', 'out'],
+                    ['Long distance fee reversal', '+₹1,240', 'in'],
+                    ['Cancellation reversal', '−₹892', 'out'],
+                    ['Coupon promo funded', '−₹5,120', 'out'],
+                    ['Packaging pass-through', '+₹6,340', 'in'],
+                    ['Convenience deduction', '−₹720', 'out'],
+                    ['… 34 more line items', '', 'ellipsis'],
+                  ].map(([label, val, kind], i) => (
+                    <div key={i} className={`bv-problem-mock-row bv-problem-mock-row--${kind}`}>
+                      <span className="bv-problem-mock-label">{label}</span>
+                      <span className="bv-problem-mock-val">{val}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="bv-problem-mock-foot">
+                  <span className="bv-problem-mock-foot-label">Net payout to your account</span>
+                  <span className="bv-problem-mock-foot-val">₹ ? ? ? ? ? ?</span>
+                </div>
+              </div>
             </div>
             <div className="bv-problem-right">
               <p className="bv-problem-body">

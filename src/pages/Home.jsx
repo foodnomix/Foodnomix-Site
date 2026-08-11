@@ -639,7 +639,16 @@ export default function Home() {
       {/* ── NAV ── */}
       <nav className={`nav ${scrolled ? 'nav--scrolled' : ''}`}>
         <div className="nav-inner">
-          <Link to="/" className="nav-logo">
+          <Link
+            to="/"
+            className="nav-logo"
+            onClick={(e) => {
+              e.preventDefault()
+              setNavOpen(false)
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }}
+            aria-label="Foodnomix — back to top"
+          >
             <img src="/logos/foodnomix-logo.svg" alt="Foodnomix" className="nav-logo-img" />
           </Link>
           <div className={`nav-links ${navOpen ? 'nav-links--open' : ''}`}>
@@ -895,7 +904,14 @@ export default function Home() {
         <div className="container">
           <div className="footer-top">
             <div className="footer-brand">
-              <img src="/logos/foodnomix-logo.svg" alt="Foodnomix" className="footer-logo-img" />
+              <button
+                type="button"
+                className="footer-logo-btn"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                aria-label="Back to top"
+              >
+                <img src="/logos/foodnomix-logo.svg" alt="Foodnomix" className="footer-logo-img" />
+              </button>
               <p className="footer-tagline">Online business management & growth for Indian restaurants on Swiggy and Zomato.</p>
             </div>
             <div className="footer-links">
